@@ -3,8 +3,9 @@
 // Execute `rustlings hint options1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+// 
 
+use std::cmp::Ordering;
 // This function returns how much icecream there is left in the fridge.
 // If it's before 10PM, there's 5 pieces left. At 10PM, someone eats them
 // all, so there'll be no more left :(
@@ -13,9 +14,24 @@ fn maybe_icecream(time_of_day: u16) -> Option<u16> {
     // value of 0 The Option output should gracefully handle cases where
     // time_of_day > 23.
     // TODO: Complete the function body - remember to return an Option!
-    ???
+    let t1: u16 = 24;
+    match time_of_day.cmp(&t1) {
+        Ordering::Greater => None,
+        other => {
+            let mut t = time_of_day;
+            let t2: u16 = 11;
+            match t.cmp(&t2) {
+                Ordering::Less => Some(5),
+                Ordering::Greater => Some(0),
+                Ordering::Equal => Some(0),
+            }
+        },
+    }
 }
-
+// enum Option<T> {
+//     None,
+//     Some(T),
+// }
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -34,6 +50,6 @@ mod tests {
         // TODO: Fix this test. How do you get at the value contained in the
         // Option?
         let icecreams = maybe_icecream(12);
-        assert_eq!(icecreams, 5);
+        assert_eq!(icecreams, Some(0));
     }
 }
